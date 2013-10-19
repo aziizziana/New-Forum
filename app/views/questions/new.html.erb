@@ -1,5 +1,11 @@
-<form action = <%=questions_path%> method = "Post"> 
-	Title: <input type = "text" name="title"><br />
-	Body: <input type = "text" name="body"><br />
-	<input type = "submit" value = "Submit">
-<form>
+<%= form_for(@question) do |form| %>
+    <%= form.label :title%>
+	<%= form.text_field :title %><br />
+
+
+	<%= form.label :body%>
+	<%= form.text_field :body %><br />
+
+	<%= form.submit %>
+
+<% end %>

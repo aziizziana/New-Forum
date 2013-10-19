@@ -12,8 +12,7 @@ class QuestionsController < ApplicationController
 	end
 
 	def create
-		@questions = Question.new(:title => params[:title], :body => params[:body])
-		@questions.save()
+		Question.create(params[:question])
 		redirect_to questions_path
 	end
 
