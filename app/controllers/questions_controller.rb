@@ -1,23 +1,39 @@
 class QuestionsController < ApplicationController
 	def index
+		#retrieving a list of all the questions
 		@questions = Question.all
+
+		#display the index page
+		render(:index)
 	end
 
 	def show
+		#find the question
 		@questions = Question.find(params[:id])
+		
+		#display the question
+		render(:show)
 	end
 
 	def new
+		#display a form for creating a new question
 		@question = Question.new
+		render(:new)
 	end
 
 	def create
+		#insert the question into the database
 		Question.create(params[:question])
+
+		#display the newly created question
 		redirect_to questions_path
 	end
 
 	def edit
+		#retrieve the question you want to edit
 		@question = Question.find(params[:id])
+
+		#display the question in the edit form
 		render(:edit, {:format => :html})
 	end
 
