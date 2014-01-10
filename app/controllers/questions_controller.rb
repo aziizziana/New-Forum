@@ -17,14 +17,20 @@ class QuestionsController < ApplicationController
 	end
 
 	def edit
-		@questions = Question.find(params[:id])
+		@question = Question.find(params[:id])
+		render(:edit, {:format => :html})
 	end
 
 	def update
-		@questions = Question.find(params[:id])
-		@questions.update_attributes(params[:questions])
-		render :text => "Updated successfully!!"
-		
+		#step 1 find the question we r trying to edit/update
+		@question = Question.find(params[:id])
+		#step 2 change its attributes to the new user supplied values
+		@question.title = params[:title]
+		@question.body = params[:body]
+		#step 3 save the edited question
+		@question.save
+		#step 4 display the updated question
+	    redirect_to("/questions/#{@question.id}")
 	end
 
 end
